@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="angular.min.js"></script>
+<!--<script src="jquery.min.js"></script>
+<script src="bootstrap.min.js"></script>
+<link rel="stylesheet" href="bootstrap.min.css">-->
+<link rel="stylesheet" href="style.css">
+<script src="myApp.js"></script>
+<script src="myCtrl.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl as ctrl">
+	<!--<menu-vestiti></menu-vestiti>
+	<img-risultato></img-risultato>-->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#">Manichinofy</a>
+		</div>
+	<ul class="nav navbar-nav">
+		<li class="active"><a href="" ng-click="ctrl.init()">Reset</a></li>
+		<li class="dropdown">
+			<a class="dropdown-toggle" data-toggle="dropdown" href="#">Maglie
+			<span class="caret"></span></a>
+			<ul class="dropdown-menu">
+				<li ng-repeat="x in ctrl.maglie"><a href="" ng-click="ctrl.setMaglia(x.img);">{{x.desc}}</a></li>
+			</ul>
+		</li>
+		<li class="dropdown">
+			<a class="dropdown-toggle" data-toggle="dropdown" href="#">Pantaloni
+			<span class="caret"></span></a>
+			<ul class="dropdown-menu">
+				<li ng-repeat="x in ctrl.pantaloni"><a href="" ng-click="ctrl.setPantalone(x.img);">{{x.desc}}</a></li>
+			</ul>
+		</li>
+		<li class="dropdown">
+			<a class="dropdown-toggle" data-toggle="dropdown" href="#">Scarpe
+			<span class="caret"></span></a>
+			<ul class="dropdown-menu">
+				<li ng-repeat="x in ctrl.scarpe"><a href="" ng-click="ctrl.setScarpe(x.img);">{{x.desc}}</a></li>
+			</ul>
+		</li>
+		<li class="dropdown">
+			<a class="dropdown-toggle" data-toggle="dropdown" href="#">Occhiali
+			<span class="caret"></span></a>
+			<ul class="dropdown-menu">
+				<li><input style="margin-left: 20px" type="checkbox" ng-model="ctrl.showOcchiali"> Mostra Occhiali</li>
+			</ul>
+		</li>
+	</ul>
+	</div>
+</nav>
+<div class="result">
+	<img src="img/{{ctrl.manichino}}"><img ng-show="ctrl.showOcchiali" class="occhiali" ng-src="img/{{ctrl.occhiale}}">
+	<img class="maglia" ng-class="{modifica: ctrl.showOcchiali, off: !ctrl.showMaglia}" ng-src="img/{{ctrl.maglia}}">
+	<img class="pantalone" ng-class="{modifica: ctrl.showOcchiali, verdiOn: ctrl.verdiOn, off: !ctrl.showPant}" ng-src="img/{{ctrl.pantalone}}">
+	<img class="scarpasx" ng-class="{modifica: ctrl.showOcchiali, off: !ctrl.showScarpa}" ng-src="img/{{ctrl.scarpa}}">
+	<img class="braccioSx" ng-class="{modifica: ctrl.showOcchiali, off: !ctrl.showOver}" ng-src="img/{{ctrl.braccioSx}}">
+	<img class="braccioDx" ng-class="{modifica: ctrl.showOcchiali, off: !ctrl.showOver}" ng-src="img/{{ctrl.braccioDx}}">
+</div>
+</body>
+</html>

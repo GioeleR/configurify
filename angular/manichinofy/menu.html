@@ -1,0 +1,38 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#">Manichinofy</a>
+		</div>
+	<ul class="nav navbar-nav">
+		<li class="active"><a href="" ng-click="ctrl.init()">Reset</a></li>
+		<li class="dropdown">
+			<a class="dropdown-toggle" data-toggle="dropdown" href="#">Maglie
+			<span class="caret"></span></a>
+			<ul class="dropdown-menu">
+				<li ng-repeat="x in ctrl.maglie"><a href="" ng-click="ctrl.setMaglia(x.img);">{{x.desc}}</a></li>
+			</ul>
+		</li>
+		<li class="dropdown">
+			<a class="dropdown-toggle" data-toggle="dropdown" href="#">Pantaloni
+			<span class="caret"></span></a>
+			<ul class="dropdown-menu">
+				<li ng-repeat="x in ctrl.pantaloni"><a href="" ng-click="ctrl.setPantalone(x.img);">{{x.desc}}</a></li>
+			</ul>
+		</li>
+		<li class="dropdown">
+			<a class="dropdown-toggle" data-toggle="dropdown" href="#">Scarpe
+			<span class="caret"></span></a>
+			<ul class="dropdown-menu">
+				<li ng-repeat="x in ctrl.scarpe"><a href="" ng-click="ctrl.setScarpe(x.img);">{{x.desc}}</a></li>
+			</ul>
+		</li>
+		<li class="dropdown">
+			<a class="dropdown-toggle" data-toggle="dropdown" href="#">Occhiali
+			<span class="caret"></span></a>
+			<ul class="dropdown-menu">
+				<li><input style="margin-left: 20px" type="checkbox" ng-model="ctrl.showOcchiali"> Mostra Occhiali</li>
+			</ul>
+		</li>
+	</ul>
+	</div>
+</nav>
