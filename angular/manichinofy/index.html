@@ -63,8 +63,8 @@
 	<img class="braccioDx" ng-class="{modifica: ctrl.showOcchiali, off: !ctrl.showOver}" ng-src="img/{{ctrl.braccioDx}}">
 </div>
 <div class="invio">
-	<button ng-click="ctrl.inviaConfig()">Salva questa configurazione sul server</button>
-	<button ng-click="">Scarica le tue configurazioni dal server</button>
+	<button ng-disabled="!(ctrl.sendButton)" ng-click="ctrl.sendConfig()">Salva questa configurazione sul server</button>
+	<button ng-click="ctrl.getConfig()">Scarica le tue configurazioni dal server</button>
 </div>
 </body>
 </html>

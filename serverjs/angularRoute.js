@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var engine = require('./public/manichinofy/engine');
 
 router.get('/manichinofy/maglie.json', function(req, res, next) {
   res.sendFile(__dirname+'/public/manichinofy/maglie.json');
@@ -11,9 +12,8 @@ router.get('/manichinofy/scarpe.json', function(req, res, next) {
   res.sendFile(__dirname+'/public/manichinofy/scarpe.json');
 });
 router.get('/manichinofy/config', function(req, res, next) {
-  res.sendFile(__dirname+'/public/manichinofy/config.json');
+  res.sendFile(__dirname+'/public/manichinofy/config/config.json');
 });
-router.put('/manichinofy/config/config.json', function(req, res, next){
-  res.send('ok');
-});
+router.put('/manichinofy/config', engine.setConfig);
+
 module.exports = router;
