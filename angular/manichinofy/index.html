@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>-->
 <script src="angular.min.js"></script>
-<!--<script src="jquery.min.js"></script>
+<script src="jquery.min.js"></script>
 <script src="bootstrap.min.js"></script>
-<link rel="stylesheet" href="bootstrap.min.css">-->
+<link rel="stylesheet" href="bootstrap.min.css">
 <link rel="stylesheet" href="style.css">
 <script src="myApp.js"></script>
 <script src="myCtrl.js"></script>
@@ -55,12 +55,16 @@
 	</div>
 </nav>
 <div class="result">
-	<img src="img/{{ctrl.manichino}}"><img ng-show="ctrl.showOcchiali" class="occhiali" ng-src="img/{{ctrl.occhiale}}">
+	<img ng-src="img/{{ctrl.manichino}}"><img ng-show="ctrl.showOcchiali" class="occhiali" ng-src="img/{{ctrl.occhiale}}">
 	<img class="maglia" ng-class="{modifica: ctrl.showOcchiali, off: !ctrl.showMaglia}" ng-src="img/{{ctrl.maglia}}">
 	<img class="pantalone" ng-class="{modifica: ctrl.showOcchiali, verdiOn: ctrl.verdiOn, off: !ctrl.showPant}" ng-src="img/{{ctrl.pantalone}}">
 	<img class="scarpasx" ng-class="{modifica: ctrl.showOcchiali, off: !ctrl.showScarpa}" ng-src="img/{{ctrl.scarpa}}">
 	<img class="braccioSx" ng-class="{modifica: ctrl.showOcchiali, off: !ctrl.showOver}" ng-src="img/{{ctrl.braccioSx}}">
 	<img class="braccioDx" ng-class="{modifica: ctrl.showOcchiali, off: !ctrl.showOver}" ng-src="img/{{ctrl.braccioDx}}">
+</div>
+<div class="invio">
+	<button ng-click="ctrl.inviaConfig()">Salva questa configurazione sul server</button>
+	<button ng-click="">Scarica le tue configurazioni dal server</button>
 </div>
 </body>
 </html>
