@@ -14,6 +14,7 @@ router.get('/manichinofy/scarpe.json', function(req, res, next) {
 router.get('/manichinofy/config', function(req, res, next) {
   res.sendFile(__dirname+'/public/manichinofy/config/config.json');
 });
-router.put('/manichinofy/config', engine.setConfig);
+router.put('/manichinofy/config', [engine.control, engine.setConfig]);
+router.delete('/manichinofy/config', engine.deleteConfig);
 
 module.exports = router;

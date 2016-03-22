@@ -48,9 +48,15 @@
 			<a class="dropdown-toggle" data-toggle="dropdown" href="#">Occhiali
 			<span class="caret"></span></a>
 			<ul class="dropdown-menu">
-				<li><input style="margin-left: 20px" type="checkbox" ng-model="ctrl.showOcchiali"> Mostra Occhiali</li>
+				<li><input style="margin-left: 20px" type="checkbox" ng-model="ctrl.showOcchiali" ng-change="ctrl.setSendButton()"> Mostra Occhiali</li>
 			</ul>
 		</li>
+	</ul>
+	<ul class="nav navbar-nav navbar-right">
+		<li ng-class="{active: ctrl.sendButton}"><a href="" ng-click="ctrl.sendConfig()">Put on Server</a></li>
+		<li class="active"><a href="" ng-click="ctrl.getConfig()">Scarica configurazioni dal server</a></li>
+		<li class="active" ng-show="ctrl.lungConfig>1"><a href="" ng-click="ctrl.next()">Scorri Configurazioni</a></li>
+		<li class="active" ng-show="ctrl.lungConfig>0"><a href="" ng-click="ctrl.del()">Cancella tutto dal server</a></li>
 	</ul>
 	</div>
 </nav>
@@ -61,10 +67,6 @@
 	<img class="scarpasx" ng-class="{modifica: ctrl.showOcchiali, off: !ctrl.showScarpa}" ng-src="img/{{ctrl.scarpa}}">
 	<img class="braccioSx" ng-class="{modifica: ctrl.showOcchiali, off: !ctrl.showOver}" ng-src="img/{{ctrl.braccioSx}}">
 	<img class="braccioDx" ng-class="{modifica: ctrl.showOcchiali, off: !ctrl.showOver}" ng-src="img/{{ctrl.braccioDx}}">
-</div>
-<div class="invio">
-	<button ng-disabled="!(ctrl.sendButton)" ng-click="ctrl.sendConfig()">Salva questa configurazione sul server</button>
-	<button ng-click="ctrl.getConfig()">Scarica le tue configurazioni dal server</button>
 </div>
 </body>
 </html>

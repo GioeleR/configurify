@@ -24,6 +24,7 @@ app.controller('myCtrl', ['$http', '$scope', function($http, $scope){
 		this.showOver = this.showPant || this.showMaglia;		//se è impostata una maglia o un pantalone modifica z-index delle braccia
 		this.verdiOn = false;			//attiva classe speciale per i pantaloni verdi
 		this.sendButton = false;		//attiva bottone invio config
+		this.lungConfig = -1;
 	}
 	this.setMaglia = function(x){		//modifica maglia
 		this.maglia = x;
@@ -52,21 +53,51 @@ app.controller('myCtrl', ['$http', '$scope', function($http, $scope){
 			this.sendButton = true;			//attivato
 	};
 	this.sendConfig = function (){
+		if (this.sendButton == false) return;
 		var object = {"maglia": this.maglia, "pantalone": this.pantalone, "scarpa": this.scarpa, "occhiali": this.showOcchiali};
 		var file = angular.toJson(object, true);
 		$http.put("http://127.0.0.1:3000/angular/manichinofy/config", file).then(function (res){
 			if (res.data=='ok')
 				console.log('Put riuscita');
+			else
+				alert(res.data);
 		}, function (res){
 			console.log(res.status);
 		});
+		this.sendButton = false;
 	};
 	this.getConfig = function(){
 		$http.get("http://127.0.0.1:3000/angular/manichinofy/config").then(function (res){
-			self.setMaglia(res.data.maglia);
-			self.setPantalone(res.data.pantalone);
-			self.setScarpe(res.data.scarpa);
-			self.showOcchiali = res.data.occhiali;
+			self.lungConfig=res.data.length;
+			if (self.lungConfig!=0 && self.lungConfig!=undefined){
+				self.configs=res.data;
+				self.setMaglia(res.data[0].maglia);
+				self.setPantalone(res.data[0].pantalone);
+				self.setScarpe(res.data[0].scarpa);
+				self.showOcchiali = res.data[0].occhiali;
+				self.selected=0;
+			}
+			else
+				alert("Nessuna configurazione presente sul server");
+		}, function (res){
+			if (res.status==404)
+				alert("Nessuna configurazione presente sul server");
+		});
+	};
+	this.next = function(){
+		this.selected++;
+		if (this.selected>=this.lungConfig)
+			this.selected=0;
+		this.setMaglia(this.configs[this.selected].maglia);
+		this.setPantalone(this.configs[this.selected].pantalone);
+		this.setScarpe(this.configs[this.selected].scarpa);
+		this.showOcchiali = this.configs[this.selected].occhiali;
+	};
+	this.del = function(){
+		$http.delete("http://127.0.0.1:3000/angular/manichinofy/config").then(function (res){
+			alert("Configurazioni salvate sul server eliminate correttamente");
+		}, function(res){
+			alert("Errore durante la richiesta");
 		});
 	};
 	this.init();	

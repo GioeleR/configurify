@@ -34,5 +34,11 @@
 			</ul>
 		</li>
 	</ul>
+	<ul class="nav navbar-nav navbar-right">
+		<li ng-class="{active: ctrl.sendButton}"><a href="" ng-click="ctrl.sendConfig()">Put on Server</a></li>
+		<li class="active"><a href="" ng-click="ctrl.getConfig()">Scarica configurazioni dal server</a></li>
+		<li class="active" ng-show="ctrl.lungConfig>1"><a href="" ng-click="ctrl.next()">Scorri Configurazioni</a></li>
+		<li class="active" ng-show="ctrl.lungConfig>0"><a href="" ng-click="ctrl.del()">Delete from server</a></li>
+	</ul>
 	</div>
 </nav>
