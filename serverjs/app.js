@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var angular = require('./angularRoute');
+var server = require('./serverRoute');
 
 //creo l'app express
 var app = express();
@@ -28,7 +28,8 @@ app.use(express.static(path.join(__dirname, 'public')));	//dico all'app di servi
 //definisco i namespace base per due tipologie di rotte: routes e users sono 'router' di rotte
 app.use('/', routes);
 app.use('/users', users);
-app.use('/angular', angular);
+app.use('/angular', server);
+app.use('/react', server);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
