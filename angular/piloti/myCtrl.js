@@ -13,8 +13,4 @@ app.controller('myCtrl', ['$http', function($http){
 		this.corpo = pilota2.corpo;
 		this.base = pilota3.img;
 	};
-	/*var contr = this;
-	$http.get('http://127.0.0.1:3000/images_vector.json').success(function(data){
-		contr.vector=data;
-	});*/
 }]);

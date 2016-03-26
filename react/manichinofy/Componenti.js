@@ -2,7 +2,7 @@ var Container = React.createClass({
 	getInitialState: function() {
 		return {};
 	},
-	componentWillMount: function() {
+	componentWillMount: function() {				//richiedo al server i vettori con i dati
 		var maglieUrl = this.props.source + 'maglie.json';
 		var pantaloniUrl = this.props.source + 'pantaloni.json';
 		var scarpeUrl = this.props.source + 'scarpe.json';
@@ -32,7 +32,7 @@ var MenuList = React.createClass({
 	getInitialState: function(){
 		return {maglia: '', pantalone: '', scarpa: '', showOcchiali: 'false'};
 	},
-	componentWillReceiveProps: function(nextProps) {
+	componentWillReceiveProps: function(nextProps) {			//modifica lo stato appena riceve nuove props da Container
 		this.setState({maglie: nextProps.maglie});
 		this.setState({pantaloni: nextProps.pantaloni});
 		this.setState({scarpe: nextProps.scarpe});
@@ -78,24 +78,24 @@ var MenuList = React.createClass({
 	}
 });
 
-var MenuItem = React.createClass({
+var MenuItem = React.createClass({			//dropdown menu per 'maglie' 'pantaloni' e 'scarpe', mostra i capi disponibili per ogni sezione
 	getInitialState: function(){
 		return {};
 	},
-	handleClick: function(capo){
+	handleClick: function(capo){			//gestisce l'evento click sui capi del menu
 		this.props.setCapo(capo);
 	},
-	componentWillReceiveProps: function(nextProps) {
+	componentWillReceiveProps: function(nextProps) {			//cambia lo stato appena riceve nuove props
 		this.setState({vestiario: nextProps.vestiario});
 	},
 	render: function(){
 		var that = this;
 		if (this.state.vestiario!=undefined)
-		var elenco = this.state.vestiario.map(function(capo, i){
-			return(
-				<li key={i} ><a href="#" onClick={that.handleClick.bind(that, capo.img)}>{capo.desc}</a></li>
-			);
-		});
+			var elenco = this.state.vestiario.map(function(capo, i){
+				return(
+					<li key={i} ><a href="#" onClick={that.handleClick.bind(that, capo.img)}>{capo.desc}</a></li>
+				);
+			});
 		return (
 			<li className="dropdown">
 				<a className="dropdown-toggle" data-toggle="dropdown" href="#">{this.props.parte}
@@ -108,7 +108,7 @@ var MenuItem = React.createClass({
 	}
 });
 
-var RightSection = React.createClass({
+var RightSection = React.createClass({					//parte destra del menu (interazione col server)
 	render: function() {
 		return(
 			<ul className="nav navbar-nav navbar-right">
@@ -121,28 +121,32 @@ var RightSection = React.createClass({
 	}
 });
 
-var ImageResult = React.createClass({
+var ImageResult = React.createClass({						//immagine risultante
 	getInitialState: function(){
-		return {manichino: "manichino.jpg", occhiali: "occhiali.png", maglia: '', pantalone: '', scarpa:'', braccioSx: "mano_sx.png", braccioDx: "mano_dx.png", showMaglia: false, showPant: false, showScarpa: false, showOcchiali: false, showOver: false};
+		return {manichino: "manichino.jpg", maglia: '', pantalone: '', scarpa:'', braccioSx: "mano_sx.png", 
+				braccioDx: "mano_dx.png", showMaglia: false, showPant: false, showScarpa: false, showOcchiali: false, showOver: false};
 	},
-	componentWillReceiveProps: function(nextProps) {
+	componentWillReceiveProps: function(nextProps) {		//modifica lo state se riceve nuove props diverse dalle precedenti e se l'utente modifica il capo selezionato
 		if (this.props.maglia=="" && nextProps.maglia!=""){
 			this.setState({maglia: nextProps.maglia});
 			this.setState({showMaglia: true});
 			this.setState({showOver: true});
 		}
-		else this.setState({maglia: nextProps.maglia});
+		else
+			this.setState({maglia: nextProps.maglia});
 		if (this.props.pantalone=="" && nextProps.pantalone!=""){
 			this.setState({pantalone: nextProps.pantalone});
 			this.setState({showPant: true});
 			this.setState({showOver: true});
 		}
-		else this.setState({pantalone: nextProps.pantalone});
+		else
+			this.setState({pantalone: nextProps.pantalone});
 		if (this.props.scarpa=="" && nextProps.scarpa!=""){
 			this.setState({scarpa: nextProps.scarpa});
 			this.setState({showScarpa: true});
 		}
-		else this.setState({scarpa: nextProps.scarpa});
+		else
+			this.setState({scarpa: nextProps.scarpa});
 		if (this.props.showOcchiali!=nextProps.showOcchiali)
 			this.setState({showOcchiali: !this.state.showOcchiali});
 	},
