@@ -2,7 +2,7 @@ var piloti = [{"nome": "Dovizioso", "img": "Dovizioso.jpg", "testa": "dov_testa.
 			{"nome": "Rossi", "img": "Rossi.jpg", "testa": "ros_testa.png", "corpo": "ros_corpo.png"},
 			{"nome": "Lorenzo", "img": "Lorenzo.jpg", "testa": "lor_testa.png", "corpo": "lor_corpo.png"},
 			{"nome": "Marquez", "img": "Marquez.jpg", "testa": "mar_testa.png", "corpo": "mar_corpo.png"}];
-
+/*commento */
 var Container = React.createClass({
 	render: function(){
 		return (
