@@ -10,59 +10,7 @@
 <script src="myCtrl.js"></script>
 </head>
 <body ng-app="myApp" ng-controller="myCtrl as ctrl">
-	<!--<menu-vestiti></menu-vestiti>
-	<img-risultato></img-risultato>-->
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<a class="navbar-brand" href="#">Manichinofy</a>
-		</div>
-	<ul class="nav navbar-nav">
-		<li class="active"><a href="" ng-click="ctrl.init()">Reset</a></li>
-		<li class="dropdown">
-			<a class="dropdown-toggle" data-toggle="dropdown" href="#">Maglie
-			<span class="caret"></span></a>
-			<ul class="dropdown-menu">
-				<li ng-repeat="x in ctrl.maglie"><a href="" ng-click="ctrl.setMaglia(x.img);">{{x.desc}}</a></li>
-			</ul>
-		</li>
-		<li class="dropdown">
-			<a class="dropdown-toggle" data-toggle="dropdown" href="#">Pantaloni
-			<span class="caret"></span></a>
-			<ul class="dropdown-menu">
-				<li ng-repeat="x in ctrl.pantaloni"><a href="" ng-click="ctrl.setPantalone(x.img);">{{x.desc}}</a></li>
-			</ul>
-		</li>
-		<li class="dropdown">
-			<a class="dropdown-toggle" data-toggle="dropdown" href="#">Scarpe
-			<span class="caret"></span></a>
-			<ul class="dropdown-menu">
-				<li ng-repeat="x in ctrl.scarpe"><a href="" ng-click="ctrl.setScarpe(x.img);">{{x.desc}}</a></li>
-			</ul>
-		</li>
-		<li class="dropdown">
-			<a class="dropdown-toggle" data-toggle="dropdown" href="#">Occhiali
-			<span class="caret"></span></a>
-			<ul class="dropdown-menu">
-				<li><input style="margin-left: 20px" type="checkbox" ng-model="ctrl.showOcchiali" ng-change="ctrl.setSendButton()"> Mostra Occhiali</li>
-			</ul>
-		</li>
-	</ul>
-	<ul class="nav navbar-nav navbar-right">
-		<li ng-class="{active: ctrl.sendButton}"><a href="" ng-click="ctrl.sendConfig()">Put on Server</a></li>
-		<li class="active"><a href="" ng-click="ctrl.getConfig()">Scarica configurazioni dal server</a></li>
-		<li class="active" ng-show="ctrl.lungConfig>1"><a href="" ng-click="ctrl.next()">Scorri Configurazioni</a></li>
-		<li class="active" ng-show="ctrl.lungConfig>0"><a href="" ng-click="ctrl.del()">Cancella tutto dal server</a></li>
-	</ul>
-	</div>
-</nav>
-<div class="result">
-	<img ng-src="img/{{ctrl.manichino}}"><img ng-show="ctrl.showOcchiali" class="occhiali" ng-src="img/{{ctrl.occhiale}}">
-	<img class="maglia" ng-class="{modifica: ctrl.showOcchiali, off: !ctrl.showMaglia}" ng-src="img/{{ctrl.maglia}}">
-	<img class="pantalone" ng-class="{modifica: ctrl.showOcchiali, verdiOn: ctrl.verdiOn, off: !ctrl.showPant}" ng-src="img/{{ctrl.pantalone}}">
-	<img class="scarpasx" ng-class="{modifica: ctrl.showOcchiali, off: !ctrl.showScarpa}" ng-src="img/{{ctrl.scarpa}}">
-	<img class="braccioSx" ng-class="{modifica: ctrl.showOcchiali, off: !ctrl.showOver}" ng-src="img/{{ctrl.braccioSx}}">
-	<img class="braccioDx" ng-class="{modifica: ctrl.showOcchiali, off: !ctrl.showOver}" ng-src="img/{{ctrl.braccioDx}}">
-</div>
+	<menu-vestiti></menu-vestiti>
+	<img-risultato></img-risultato>
 </body>
 </html>
