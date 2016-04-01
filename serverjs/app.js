@@ -16,11 +16,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-//definisco i namespace base per due tipologie di rotte: routes e server sono 'router' di rotte
-/*app.get('/', function(req, res, next) {
-  res.send('Welcome to Express');
-});*/
-app.use('/', express.static(path.join(__dirname, 'public')));
+//definisco i namespace base per due tipologie di rotte: angular e react sono 'router' di rotte
+app.get('/', express.static(path.join(__dirname, 'public')));
 app.use('/angular', angular);
 app.use('/react', react);
 
