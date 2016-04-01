@@ -1,0 +1,8 @@
+<div class="result">
+	<img src="img/{{ctrl.manichino}}"><img ng-show="ctrl.showOcchiali" class="occhiali" ng-src="img/{{ctrl.occhiale}}">
+	<img class="maglia" ng-class="{modifica: ctrl.showOcchiali, off: !ctrl.showMaglia}" ng-src="img/{{ctrl.maglia}}">
+	<img class="pantalone" ng-class="{modifica: ctrl.showOcchiali, verdiOn: ctrl.verdiOn, off: !ctrl.showPant}" ng-src="img/{{ctrl.pantalone}}">
+	<img class="scarpasx" ng-class="{modifica: ctrl.showOcchiali, off: !ctrl.showScarpa}" ng-src="img/{{ctrl.scarpa}}">
+	<img class="braccioSx" ng-class="{modifica: ctrl.showOcchiali, off: !ctrl.showOver}" ng-src="img/{{ctrl.braccioSx}}">
+	<img class="braccioDx" ng-class="{modifica: ctrl.showOcchiali, off: !ctrl.showOver}" ng-src="img/{{ctrl.braccioDx}}">
+</div>

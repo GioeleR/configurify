@@ -1,0 +1,65 @@
+.result{
+	margin-left: 40%;
+	margin-top: 60px;
+}
+
+li input{margin-left: 20px}
+
+img {
+	z-index: -1;
+	position: relative
+}
+
+.occhiali {
+	width: 50px;
+	top: -325px;
+	left: -139px;
+	z-index: 1;	
+}
+
+.maglia {
+	top: -167px;
+	left: -205px;
+	z-index: 1;
+	width: 190px;
+}
+
+.braccioDx {
+	z-index: 2;
+	top: -63px;
+	left: -678px;
+}
+
+.braccioSx {
+	z-index: 2;
+	top: -62px;
+	left: -467px;
+}
+
+.pantalone {
+	z-index: 0;
+	width: 137px;
+	top: 80px;
+	left: -359px;
+}
+
+.scarpasx {
+	z-index: -1;
+	top: 300px;
+	left: -444px;
+	width: 90px;
+}
+
+.maglia.modifica{left: -255px;}
+
+.braccioDx.modifica{left: -728px;}
+
+.braccioSx.modifica{left: -517px}
+
+.pantalone.modifica{left: -408px;}
+
+.scarpasx.modifica{left: -495px;}
+
+.off{z-index: -10;}
+
+.hidden{display: none}

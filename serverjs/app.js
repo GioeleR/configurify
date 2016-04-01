@@ -1,29 +1,28 @@
 // risorse esterne da includere (modulo express e due file locali che contengono le rotte)
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var server = require('./serverRoute');
+var angular = require('./angularRoutes');
+var react = require('./reactRoutes');
 
 //creo l'app express
 var app = express();
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 //definisco i namespace base per due tipologie di rotte: routes e server sono 'router' di rotte
-app.get('/', function(req, res, next) {
+/*app.get('/', function(req, res, next) {
   res.send('Welcome to Express');
-});
-app.use('/angular', server);
-app.use('/react', server);
+});*/
+app.use('/', express.static(path.join(__dirname, 'public')));
+app.use('/angular', angular);
+app.use('/react', react);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
