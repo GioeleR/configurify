@@ -153,10 +153,13 @@ var RightSection = React.createClass({					//parte destra del menu (interazione 
 				dataType: 'json'
 			});
 			handler.done(function(res){
-				console.log("put ok");
-			}).fail(function(res){
-				console.log(res.statusText);
-			});
+				if (res)
+                    console.log("put ok");
+                else
+                    alert("Configurazione gia' presente sul server");
+            }).fail(function(res){
+                console.log(res.status);
+            });
 		}
 		else alert("Configurazione non valida");
 	},

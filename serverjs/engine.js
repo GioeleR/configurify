@@ -51,10 +51,10 @@ engine.setConfig = function(req, res){
 				process.exit(1);
 			}
 		});
-		res.send("ok");
+		res.status(200).end();
 	}
-	else
-		res.send("Configurazione gia' presente sul server");
+	else res.status(304).end();
+		//res.status(304).send("Configurazione gia' presente sul server");
 };
 
 engine.deleteConfig = function(req, res){

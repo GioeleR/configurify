@@ -1,3 +1,5 @@
-react/manichinofy/node_modules
 angular/manichinofy/node_modules
+react/manichinofy/node_modules
+react+flux/manichinofy/node_modules
+react+flux/manchinofy//js/bundle.js
 serverjs/node_modules
