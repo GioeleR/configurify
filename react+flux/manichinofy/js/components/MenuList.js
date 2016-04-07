@@ -3,6 +3,7 @@ var MenuItem = require('./MenuItem');
 var RightSection = require('./RightSection');
 var ImageResult = require('./ImageResult');
 var Store = require('../Store');
+var Actions = require('../Actions');
 
 var MenuList = React.createClass({
 	getInitialState: function(){

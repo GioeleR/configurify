@@ -110,6 +110,8 @@ var Store = _.extend({
             else
                 alert("Configurazione gia' presente sul server");
         }).fail(function(res){
+            if(res.status==200)
+                alert("Caricamento effettuato con successo");
             console.log(res.status);
         });
     },
@@ -132,6 +134,7 @@ var Store = _.extend({
         if (configs.length <= selected)
             selected = 0;
         currentConfig = configs[selected];
+        currentConfig.occhiali = this.toBoolean(configs[selected].occhiali);
         this.emit("Change");
     },
     deleteConfig: function(){
@@ -142,6 +145,7 @@ var Store = _.extend({
 		handler.done(function(res){
             console.log("delete ok");
             configs = [];
+            currentConfig = {"maglia": "", "pantalone": "", "scarpa": "", "occhiali": false};
             selected = -1;
             this.emit("Change");
 		}.bind(this)).fail(function(res){
