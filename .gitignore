@@ -3,7 +3,7 @@ react/manichinofy/node_modules
 react+flux/manichinofy/node_modules
 react+flux/manichinofy/js/bundle.js
 react+redux/manichinofy/build
-react+redux/manichinofy/jspm_modules
+react+redux/manichinofy/jspm_packages
 react+redux/manichinofy/node_modules
 serverjs/node_modules
 serverjs/public/manichinofy-data/config/config.json

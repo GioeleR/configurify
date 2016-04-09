@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import Reducers from 'src/Reducers';
 import { createStore, applyMiddleware } from 'redux';
 import createLogger from 'redux-logger';
-import Container from "src/components/Container";
+import MenuList from "src/components/MenuList";
 
 const logger = createLogger({
   level: 'debug'
@@ -18,5 +18,5 @@ const createStoreWithMiddleware = applyMiddleware(
 let store = createStoreWithMiddleware(Reducers);
 
 React.render(
-  <Provider store={store}>{() => <Container/>}</Provider>, document.getElementById('wrapper')
+  <Provider store={store}>{() => <MenuList />}</Provider>, document.getElementById('wrapper')
 );
