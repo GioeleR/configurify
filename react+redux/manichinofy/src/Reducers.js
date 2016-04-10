@@ -1,5 +1,5 @@
 const initialState = {
-    /*"maglie":[{"desc": "Maglia Nera", "img": "maglia_nera.png"}, {"desc": "Superman", "img": "superman.png"}, {"desc": "Maglia a Righe", "img": "maglia_a_righe.png"}, {"desc": "Maglia Verde", "img": "maglia_verde.png"}], 
+    /*"maglie":[{"desc": "Maglia Nera", "img": "maglia_nera.png"}, {"desc": "Superman", "img": "superman.png"}, {"desc": "Maglia a Righe", "img": "maglia_a_righe.png"}, {"desc": "Maglia Verde", "img": "maglia_verde.png"}],
     "pantaloni":[{"desc": "Pantaloni Beige", "img": "pantaloni_beige.png"}, {"desc": "Pantaloni Neri", "img": "pantaloni_neri.png"}, {"desc": "Pantaloni Verdi", "img": "pantaloni_verdi.png"}, {"desc": "Pantaloni da Elicotterista", "img": "pantaloni_elicotterista.png"}, {"desc": "Pantaloni Shorts", "img": "pantaloni_shorts.png"}],
     "scarpe":[{"desc": "Scarpe Grigie", "img": "scarpe_grigie.png"}, {"desc": "Scarpe Eleganti", "img": "scarpe_eleganti.png"}],*/
     "maglie": [],
@@ -10,15 +10,18 @@ const initialState = {
     "selected": -1,
     "manichino": "manichino.jpg",
     "braccioSx": "mano_sx.png",
-    "braccioDx": "mano_dx.png", 
+    "braccioDx": "mano_dx.png",
 };
 
 function getMaglie(state){
     var toReturn = Object.assign({}, state);
-    var serverRequestMaglie = $.get("http://localhost:3000/react/manichinofy/maglie.json", function(result){
-        toReturn.maglie = result.maglie.slice();
-    });
-    
+    //TODO: alla get per ora non succede nulla
+    return toReturn;
+};
+
+function maglieLoaded(state,action){
+    var toReturn = Object.assign({}, state);
+    toReturn.maglie = action.maglie;
     return toReturn;
 };
 
@@ -40,7 +43,7 @@ function getScarpe(state){
 
 function setMaglia(state, capo){
     var toReturn = Object.assign({}, state,{
-        maglie: [...state.maglie], pantaloni: [...state.pantaloni], scarpe: [...state.scarpe] 
+        maglie: [...state.maglie], pantaloni: [...state.pantaloni], scarpe: [...state.scarpe]
     });
     toReturn.currentConfig.maglia = capo;
     return toReturn;
@@ -127,7 +130,7 @@ function deleteConfig(state){
         toReturn.selected = -1;
     }).fail(function(res){
         console.log(res.statusText);
-    });  
+    });
     return toReturn;
 };
 
@@ -163,6 +166,8 @@ export default function App(state = initialState, action) {
             return nextConfig(state);
         case "deleteConfig":
             return deleteConfig(state);
+        case "maglieLoaded":
+            return maglieLoaded(state,action);
         default:
             return state;
     };

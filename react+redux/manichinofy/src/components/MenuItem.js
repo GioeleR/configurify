@@ -5,23 +5,8 @@ import {connect} from "react-redux";
 class MenuItem extends React.Component{			//dropdown menu per 'maglie' 'pantaloni' e 'scarpe', mostra i capi disponibili per ogni sezione
 	constructor(props){
         super(props);
-        if (props.parte == "Maglie")
-            this.state = {vestiario: props.maglie};
-        else if (props.parte == "Pantaloni")
-                this.state = {vestiario: props.pantaloni};
-            else if (props.parte == "Scarpe")
-                this.state = {vestiario: props.scarpe};
-        
         this.handleClick = this._handleClick.bind(this);
 	}
-    componentWillReceiveProps(nextProps) {
-        if (this.props.parte == "Maglie")
-            this.setState = ({vestiario: nextProps.maglie});
-        else if (this.props.parte == "Pantaloni")
-                this.setState = ({vestiario: nextProps.pantaloni});
-            else if (this.props.parte == "Scarpe")
-                this.setState = ({vestiario: nextProps.scarpe});
-    }
     componentDidMount(){
         if (this.props.parte == "Maglie")
             this.props.dispatch(Actions.getMaglie());
@@ -38,8 +23,16 @@ class MenuItem extends React.Component{			//dropdown menu per 'maglie' 'pantalon
         if (this.props.parte == "Scarpe")
             this.props.dispatch(Actions.setScarpa(capo));
 	}
-    
+
 	render() {
+		//TODO: questa parte andrebbe migliorata...invece di passare il tipo al componente MenuItem perché non passare direttamente la lista?
+		if (this.props.parte == "Maglie"){
+			this.state = {vestiario: this.props.maglie};
+		} else if (this.props.parte == "Pantaloni"){
+			this.state = {vestiario: this.props.pantaloni};
+		} else if (this.props.parte == "Scarpe"){
+			this.state = {vestiario: this.props.scarpe};
+		}
 		var that = this;
 		if (this.state.vestiario!=undefined)
 			var elenco = this.state.vestiario.map(function(capo, i){

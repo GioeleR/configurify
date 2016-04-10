@@ -6,13 +6,15 @@ import Reducers from 'src/Reducers';
 import { createStore, applyMiddleware } from 'redux';
 import createLogger from 'redux-logger';
 import MenuList from "src/components/MenuList";
+import ReduxThunk from 'redux-thunk'
 
 const logger = createLogger({
   level: 'debug'
 });
 
 const createStoreWithMiddleware = applyMiddleware(
-  logger
+  logger,
+  ReduxThunk
 )(createStore);
 
 let store = createStoreWithMiddleware(Reducers);

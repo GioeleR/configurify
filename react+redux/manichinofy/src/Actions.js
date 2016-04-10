@@ -1,6 +1,15 @@
 var getMaglie = function(capo) {
+    return dispatch => {
+        $.get("http://localhost:3000/react/manichinofy/maglie.json", function(result){
+            dispatch(maglieLoaded(result.maglie.slice()));
+        });
+    };
+};
+
+var maglieLoaded = function(maglie) {
     return {
-        actionType: "getMaglie"
+        actionType: "maglieLoaded",
+        maglie:maglie
     };
 };
 
