@@ -7,7 +7,7 @@ class MenuItem extends React.Component{			//dropdown menu per 'maglie' 'pantalon
         super(props);
         this.handleClick = this._handleClick.bind(this);
 	}
-    componentDidMount(){
+    componentDidMount(){        //invia richeste al server per le liste di maglie, pantaloni o scarpe
         if (this.props.parte == "Maglie")
             this.props.dispatch(Actions.getMaglie());
         if (this.props.parte == "Pantaloni")
@@ -25,21 +25,12 @@ class MenuItem extends React.Component{			//dropdown menu per 'maglie' 'pantalon
 	}
 
 	render() {
-		//TODO: questa parte andrebbe migliorata...invece di passare il tipo al componente MenuItem perché non passare direttamente la lista?
-		if (this.props.parte == "Maglie"){
-			this.state = {vestiario: this.props.maglie};
-		} else if (this.props.parte == "Pantaloni"){
-			this.state = {vestiario: this.props.pantaloni};
-		} else if (this.props.parte == "Scarpe"){
-			this.state = {vestiario: this.props.scarpe};
-		}
 		var that = this;
-		if (this.state.vestiario!=undefined)
-			var elenco = this.state.vestiario.map(function(capo, i){
-				return(
-					<li key={i} ><a href="#" onClick={that.handleClick.bind(that, capo.img)}>{capo.desc}</a></li>
-				);
-			});
+		var elenco = this.props.vestiario.map(function(capo, i){
+            return(
+                <li key={i} ><a href="#" onClick={that.handleClick.bind(that, capo.img)}>{capo.desc}</a></li>
+            );
+        });
 		return (
 			<li className="dropdown">
 				<a className="dropdown-toggle" data-toggle="dropdown" href="#">{this.props.parte}
@@ -52,12 +43,4 @@ class MenuItem extends React.Component{			//dropdown menu per 'maglie' 'pantalon
 	}
 }
 
-var select = (state) => {
-    return {
-        maglie: state.maglie,
-        pantaloni: state.pantaloni,
-        scarpe: state.scarpe
-    };
-};
-
-export default connect(select)(MenuItem);
+export default connect()(MenuItem);

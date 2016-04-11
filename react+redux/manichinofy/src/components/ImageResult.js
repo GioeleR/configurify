@@ -3,9 +3,6 @@ import { connect } from "react-redux";
 import Actions from "src/Actions";
 
 class ImageResult extends React.Component{						//immagine risultante
-	componentWillReceiveProps(nextProps) {
-        console.log("NUOVE PROPS PER IMAGERESULT");
-    }
     render() {
 		var modifica = this.props.occhiali ? " modifica" : "";
         var showMaglia = this.props.maglia != "";

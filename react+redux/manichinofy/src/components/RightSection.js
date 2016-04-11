@@ -9,7 +9,7 @@ class RightSection extends React.Component{					//parte destra del menu (interaz
         this.handlePut = this._handlePut.bind(this);
     }
     
-	_handlePut() {
+	_handlePut() {                                         //gestisce il click sul bottone Put on server
 		if (this.props.maglia!='' && this.props.pantalone!='' && this.props.scarpa!=''){
 			this.props.dispatch(Actions.uploadConfig());
 		}
