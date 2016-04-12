@@ -7,26 +7,22 @@ var EventEmitter = Events.EventEmitter;
 var selected = -1;
 var configs = [];
 var currentConfig = {"maglia": "", "pantalone": "", "scarpa": "", "occhiali": false};
-var data = {
-    "maglie":[{"desc": "Maglia Nera", "img": "maglia_nera.png"}, {"desc": "Superman", "img": "superman.png"}, {"desc": "Maglia a Righe", "img": "maglia_a_righe.png"}, {"desc": "Maglia Verde", "img": "maglia_verde.png"}], 
-    "pantaloni":[{"desc": "Pantaloni Beige", "img": "pantaloni_beige.png"}, {"desc": "Pantaloni Neri", "img": "pantaloni_neri.png"}, {"desc": "Pantaloni Verdi", "img": "pantaloni_verdi.png"}, {"desc": "Pantaloni da Elicotterista", "img": "pantaloni_elicotterista.png"}, {"desc": "Pantaloni Shorts", "img": "pantaloni_shorts.png"}], "scarpe":[{"desc": "Scarpe Grigie", "img": "scarpe_grigie.png"}, {"desc": "Scarpe Eleganti", "img": "scarpe_eleganti.png"}]
-};
+var data = {"maglie": [], "pantaloni": [], "scarpe": []};
 
-/*var data = {"maglie": [], "pantaloni": [], "scarpe": []};
-var serverRequestMaglie = $.get("http://localhost:3000/react/manichinofy/maglie.json", function(result){
-    data.maglie = result;
-});
-console.log(maglie);
-var serverRequestPantaloni = $.get("http://localhost:3000/react/manichinofy/pantaloni.json", function(result){
-    data.pantaloni = result.pantaloni;
-});
-
-var serverRquestScarpe = $.get("http://localhost:3000/react/manichinofy/scarpe.json", function(result){
-    data.scarpe = result.scarpe;
-});
-*/
 Dispatcher.register(function(action) {
     switch (action.actionType) {
+		case "maglieLoaded":
+			Store.maglieLoaded(action.result);
+			break;
+			
+		case "pantaloniLoaded":
+			Store.pantaloniLoaded(action.result);
+			break;
+			
+		case "scarpeLoaded":
+			Store.scarpeLoaded(action.result);
+			break;
+			
         case "setMaglia":
             Store.setMaglia(action.capo);
             break;
@@ -58,6 +54,8 @@ Dispatcher.register(function(action) {
         case "delete":
             Store.deleteConfig();
             break;
+		default:
+			break;
     };
 });
 
@@ -77,6 +75,21 @@ var Store = _.extend({
 		if (x=="false")
 			return false;
 		return x;
+	},
+	maglieLoaded: function(maglie){
+		data.maglie = maglie;
+        console.log(maglie);
+		this.emit("Change");
+	},
+    pantaloniLoaded: function(pantaloni){
+		data.pantaloni = pantaloni;
+        console.log(pantaloni);
+		this.emit("Change");
+	},
+    scarpeLoaded: function(scarpe){
+		data.scarpe = scarpe;
+        console.log(scarpe);
+		this.emit("Change");
 	},
     setMaglia: function(capo){
         currentConfig.maglia = capo;

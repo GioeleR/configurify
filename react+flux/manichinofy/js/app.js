@@ -1,8 +1,8 @@
 var React = require('react');
 
-var Container = require('./components/Container');
+var MenuList = require('./components/MenuList');
 
 React.render(
-  <Container source="http://localhost:3000/react/manichinofy/" />,
+  <MenuList />,
   document.getElementById('app')
 );
