@@ -14,9 +14,9 @@ var maglieLoaded = function(maglie) {
 };
 
 var getPantaloni = function(capo) {
-   return dispatch => {
+    return dispatch => {
         $.get("http://localhost:3000/react/manichinofy/pantaloni.json", function(result){
-            dispatch(pantaloniLoaded(result.pantaloni.slice()));
+            dispatch(pantaloniLoaded(result.pantaloni.slice()));   
         });
     };
 };
@@ -24,10 +24,10 @@ var getPantaloni = function(capo) {
 var pantaloniLoaded = function(pantaloni) {
     return {
         actionType: "pantaloniLoaded",
-        pantaloni:pantaloni
+        pantaloni: pantaloni
     };
-};    
-    
+};
+
 var getScarpe = function(capo) {
     return dispatch => {
         $.get("http://localhost:3000/react/manichinofy/scarpe.json", function(result){
@@ -35,11 +35,11 @@ var getScarpe = function(capo) {
         });
     };
 };
-    
+
 var scarpeLoaded = function(scarpe) {
     return {
         actionType: "scarpeLoaded",
-        scarpe:scarpe
+        scarpe: scarpe
     };
 };
 
@@ -76,21 +76,73 @@ var uploadConfig = function() {
     };
 };
 
-var downloadConfig = function() {
+var downloadConfig = function(){
+    return dispatch => {
+        $.ajax({
+            url: "http://localhost:3000/react/manichinofy/config",
+            type : 'GET',
+            success: function(result){
+                dispatch(configDownloaded(result));
+            },
+            error: function(result){
+                dispatch(notDownloaded(result));
+            }
+        });
+    }
+};
+
+var configDownloaded = function(result){
+    return{
+        actionType: "configDownloaded",
+        result: result
+    };
+};
+
+var notDownloaded = function(result){
     return {
-        actionType: "downloadConfig"
+        actionType: "notDownloaded",
+        result: result
     };
 };
 
 var deleteConfig = function() {
+    return dispatch => {
+        var handler = $.ajax({
+            url: "http://localhost:3000/react/manichinofy/config",
+            type: 'DELETE',
+            success: function(result){
+                dispatch(configDeleted(result));
+            },
+            error: function(result){
+                dispatch(notDeleted(result));
+            }
+        });
+    };
+};
+
+var configDeleted = function(result) {
     return {
-        actionType: "deleteConfig"
+        actionType: "configDeleted",
+        result: result
+    };
+};
+
+var notDeleted = function(result) {
+    return {
+        actionType: "deleteConfig",
+        result: result
     };
 };
 
 var nextConfig = function() {
     return {
         actionType: "nextConfig"
+    };
+};
+
+var resetApp = function() {
+    return {
+        actionType: "reset"
     };
 };
 
@@ -105,5 +157,6 @@ export default {
     uploadConfig: uploadConfig,
     downloadConfig: downloadConfig,
     deleteConfig: deleteConfig,
-    nextConfig: nextConfig
+    nextConfig: nextConfig,
+    resetApp: resetApp
 };
