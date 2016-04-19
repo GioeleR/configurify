@@ -97,7 +97,7 @@ function deleteConfig(state, result) {
 
 function notDelete(state, result) {
     var toReturn = Object.assign({}, state);
-    console.log(result.statuText);
+    console.log(result.statusText);
     return toReturn;
 };
 

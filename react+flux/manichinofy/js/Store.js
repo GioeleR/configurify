@@ -78,17 +78,14 @@ var Store = _.extend({
 	},
 	maglieLoaded: function(maglie){
 		data.maglie = maglie;
-        console.log(maglie);
-		this.emit("Change");
+       	this.emit("Change");
 	},
     pantaloniLoaded: function(pantaloni){
-		data.pantaloni = pantaloni;
-        console.log(pantaloni);
+		data.pantaloni = pantaloni;        
 		this.emit("Change");
 	},
     scarpeLoaded: function(scarpe){
 		data.scarpe = scarpe;
-        console.log(scarpe);
 		this.emit("Change");
 	},
     setMaglia: function(capo){
