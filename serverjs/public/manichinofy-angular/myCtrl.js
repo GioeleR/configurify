@@ -57,12 +57,12 @@ app.controller('myCtrl', ['$http', function($http){
 		var object = {"maglia": this.maglia, "pantalone": this.pantalone, "scarpa": this.scarpa, "occhiali": this.showOcchiali};
 		var file = angular.toJson(object, true);
 		$http.put("http://localhost:3000/angular/manichinofy/config", file).then(function (res){
-			if (res.data=='ok')
+			if (res.status==200)
 				console.log('Put riuscita');
-			else
-				alert(res.data);
 		}, function (res){				//in caso di errore stampa in console
-			console.log(res.status);
+			if (res.status==304)
+				alert("Configurazione gia' presente sul server");
+            console.log(res.status);
 		});
 		this.sendButton = false;			//disabilita bottone
 	};

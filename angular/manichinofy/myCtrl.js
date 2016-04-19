@@ -1,12 +1,12 @@
 app.controller('myCtrl', ['$http', function($http){
 	var self = this;
-	$http.get("http://127.0.0.1:3000/angular/manichinofy/maglie.json").then(function (response) {
+	$http.get("http://localhost:3000/angular/manichinofy/maglie.json").then(function (response) {
     	self.maglie = response.data.maglie;
 	});
-	$http.get("http://127.0.0.1:3000/angular/manichinofy/pantaloni.json").then(function (response) {
+	$http.get("http://localhost:3000/angular/manichinofy/pantaloni.json").then(function (response) {
 		self.pantaloni = response.data.pantaloni;
 	});
-	$http.get("http://127.0.0.1:3000/angular/manichinofy/scarpe.json").then(function (response) {
+	$http.get("http://localhost:3000/angular/manichinofy/scarpe.json").then(function (response) {
 		self.scarpe = response.data.scarpe;
 	});
 	this.init = function (){
@@ -56,7 +56,7 @@ app.controller('myCtrl', ['$http', function($http){
 		if (this.sendButton == false) return;
 		var object = {"maglia": this.maglia, "pantalone": this.pantalone, "scarpa": this.scarpa, "occhiali": this.showOcchiali};
 		var file = angular.toJson(object, true);
-		$http.put("http://127.0.0.1:3000/angular/manichinofy/config", file).then(function (res){
+		$http.put("http://localhost:3000/angular/manichinofy/config", file).then(function (res){
 			if (res.status==200)
 				console.log('Put riuscita');
 		}, function (res){				//in caso di errore stampa in console
@@ -67,7 +67,7 @@ app.controller('myCtrl', ['$http', function($http){
 		this.sendButton = false;			//disabilita bottone
 	};
 	this.getConfig = function(){			//richiede al server le configurazioni salvate
-		$http.get("http://127.0.0.1:3000/angular/manichinofy/config").then(function (res){			//se il file esiste la richiesta ha successo ma...
+		$http.get("http://localhost:3000/angular/manichinofy/config").then(function (res){			//se il file esiste la richiesta ha successo ma...
 			self.lungConfig=res.data.length;
 			if (self.lungConfig!=0 && self.lungConfig!=undefined){			//vengono salvate le configurazioni ricevute ed impostata la prima sul manichino
 				self.configs=res.data;
@@ -94,7 +94,7 @@ app.controller('myCtrl', ['$http', function($http){
 		this.showOcchiali = this.configs[this.selected].occhiali;
 	};
 	this.del = function(){				//elimina configurazioni dal server
-		$http.delete("http://127.0.0.1:3000/angular/manichinofy/config").then(function (res){
+		$http.delete("http://localhost:3000/angular/manichinofy/config").then(function (res){
 			alert("Configurazioni salvate sul server eliminate correttamente");
 		}, function(res){
 			alert("Errore durante la richiesta");

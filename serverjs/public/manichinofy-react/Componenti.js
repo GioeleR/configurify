@@ -23,7 +23,7 @@ var Container = React.createClass({
 	},
 	render: function(){
 		return (
-				<MenuList maglie={this.state.maglie} pantaloni={this.state.pantaloni} scarpe={this.state.scarpe} source={this.props.source} />
+				<MenuList maglie={this.state.maglie} pantaloni={this.state.pantaloni} scarpe={this.state.scarpe}/>
 		);
 	}
 });
@@ -73,8 +73,7 @@ var MenuList = React.createClass({
 						</li>
 					</ul>
 					<RightSection maglia={this.state.maglia} pantalone={this.state.pantalone} scarpa={this.state.scarpa} showOcchiali={this.state.showOcchiali} 
-								setMaglia={this.setMaglia} setPantalone={this.setPantalone} setScarpa={this.setScarpa} setOcchiali={this.impostaOcchiali}
-                                source={this.props.source}/>
+								setMaglia={this.setMaglia} setPantalone={this.setPantalone} setScarpa={this.setScarpa} setOcchiali={this.impostaOcchiali} />
 				</div>
 			</nav>
 			<ImageResult maglia={this.state.maglia} pantalone={this.state.pantalone} scarpa={this.state.scarpa} showOcchiali={this.state.showOcchiali} />
@@ -123,7 +122,7 @@ var RightSection = React.createClass({					//parte destra del menu (interazione 
 		this.setState({scarpa: nextProps.scarpa});
 		this.setState({showOcchiali: nextProps.showOcchiali});
 	},
-	toBoolean: function(x) {                   //restituisce un boolean se legge la stringa 'true' o 'false'
+	toBoolean: function(x) {
 		if (x=="true")
 			return true;
 		if (x=="false")
@@ -131,8 +130,7 @@ var RightSection = React.createClass({					//parte destra del menu (interazione 
 		return x;
 	},
 	handleGet: function() {
-        var configUrl = this.props.source + 'config';
-		this.requestConfig = $.get(configUrl, function (result) {
+		this.requestConfig = $.get('http://localhost:3000/react/manichinofy/config', function (result) {
 			this.setState({config: result});
 			this.props.setMaglia(result[0].maglia);
 			this.props.setPantalone(result[0].pantalone);
@@ -146,20 +144,22 @@ var RightSection = React.createClass({					//parte destra del menu (interazione 
 			});
 	},
 	handlePut: function() {
-        var configUrl = this.props.source + 'config';
 		if (this.state.maglia!='' && this.state.pantalone!='' && this.state.scarpa!='' && this.state.showOcchiali!=undefined){
 			var object = {"maglia": this.state.maglia, "pantalone": this.state.pantalone, "scarpa": this.state.scarpa, "occhiali": this.state.showOcchiali};
 			var handler = $.ajax({
 				data: object,
-				url: configUrl,
+				url: 'http://localhost:3000/react/manichinofy/config',
 				type: 'PUT',
 				dataType: 'json'
 			});
 			handler.done(function(res){
-				console.log("put ok");
-			}).fail(function(res){
-				console.log(res.statusText + ' ' + res.status);
-			});
+				if (res)
+                    console.log("put ok");
+                else
+                    alert("Configurazione gia' presente sul server");
+            }).fail(function(res){
+                console.log(res.status);
+            });
 		}
 		else alert("Configurazione non valida");
 	},
@@ -175,9 +175,8 @@ var RightSection = React.createClass({					//parte destra del menu (interazione 
 		this.setState({selected: selected}); 
 	},
 	handleDelete: function() {
-        var configUrl = this.props.source + 'config';
 		var handler = $.ajax({
-			url: configUrl,
+			url: 'http://localhost:3000/react/manichinofy/config',
 			type: "DELETE",
 			success: function (data) {
 				console.log('delete ok');
