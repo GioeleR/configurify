@@ -179,7 +179,12 @@ var RightSection = React.createClass({					//parte destra del menu (interazione 
 			url: 'http://localhost:3000/react/manichinofy/config',
 			type: "DELETE",
 			success: function (data) {
-				console.log('delete ok');
+				this.props.setMaglia('');
+				this.props.setPantalone('');
+				this.props.setScarpa('');
+				this.props.setOcchiali(false);
+				this.setState({config: [], selected: 0});
+				alert('Configurazioni salvate sul server eliminate correttamente');
 			}.bind(this),
 		});
 	},
@@ -187,8 +192,10 @@ var RightSection = React.createClass({					//parte destra del menu (interazione 
 		var delClasses= "active ";
 		var nextClasses= "active ";
 		if (this.state.config != undefined){
-			if (this.state.config.length < 1)
+			if (this.state.config.length < 1){
 				delClasses+="hidden";
+				nextClasses+="hidden";
+			}
 			else if (this.state.config.length < 2)
 					nextClasses += "hidden";
 		}
@@ -213,6 +220,9 @@ var ImageResult = React.createClass({						//immagine risultante
 				braccioDx: "mano_dx.png", showMaglia: false, showPant: false, showScarpa: false, showOcchiali: false, showOver: false};
 	},
 	componentWillReceiveProps: function(nextProps) {		//modifica lo state se riceve nuove props diverse dalle precedenti e se l'utente modifica il capo selezionato
+		if (this.props.maglia=="" && this.props.pantalone=="" && this.props.scarpa==""){
+			this.setState({showMaglia: false, showPant: false, showScarpa: false, showOver: false});
+		}
 		if (this.props.maglia=="" && nextProps.maglia!=""){
 			this.setState({maglia: nextProps.maglia});
 			this.setState({showMaglia: true});

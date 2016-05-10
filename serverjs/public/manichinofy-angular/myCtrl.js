@@ -95,6 +95,7 @@ app.controller('myCtrl', ['$http', function($http){
 	};
 	this.del = function(){				//elimina configurazioni dal server
 		$http.delete("http://localhost:3000/angular/manichinofy/config").then(function (res){
+			self.init();
 			alert("Configurazioni salvate sul server eliminate correttamente");
 		}, function(res){
 			alert("Errore durante la richiesta");
